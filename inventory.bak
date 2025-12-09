@@ -1,0 +1,16 @@
+[all]
+172.22.95.89
+
+
+[ntw]
+r1 ansible_host=10.10.20.171 router_id=1.1.1.1 loopback=2.2.2.1 link_net=1.1.1.0 wildcard=0.0.0.255
+r2 ansible_host=10.10.20.172 router_id=2.2.2.2 loopback=2.2.2.2 link_net=1.1.1.0 wildcard=0.0.0.255
+
+[ntw:vars]
+ansible_user=cisco
+ansible_password=cisco
+ansible_connection=network_cli
+ansible_network_os=cisco.ios.ios
+ansible_become=yes
+ansible_become_method=enable
+ansible_become_password=cisco

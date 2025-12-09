@@ -1,0 +1,9 @@
+- name: Show OS family
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Print OS family
+      debug:
+        
+        msg: "This system runs {{ ansible_facts['distribution'] }}"

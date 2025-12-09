@@ -1,0 +1,10 @@
+- name: Register example
+  hosts: localhost
+  tasks:
+    - name: Demo register
+      ansible.builtin.command: "echo hello"
+      register: output
+
+    - name: Print registered value
+      ansible.builtin.debug:
+        var: output.stdout

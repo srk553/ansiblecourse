@@ -1,0 +1,14 @@
+---
+- name: Configure OSPF on R1 and R2
+  hosts: ntw
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Configure OSPF on routers
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 1
+          - router-id {{ router_id }}
+          - network {{ loopback }} 0.0.0.0 area 0
+          - network {{ link_net }} {{ wildcard }} area 0
+        save_when: modified

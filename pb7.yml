@@ -1,0 +1,13 @@
+- name: User info loop
+  hosts: all
+  vars:
+    users:
+      - name: "Alice"
+        role: "Admin"
+      - name: "Bob"
+        role: "Developer"
+  tasks:
+    - name: Print user details
+      ansible.builtin.debug:
+        msg: "{{ item.name }} is a {{ item.role }}"
+      loop: "{{ users }}"

@@ -1,0 +1,11 @@
+- name: Using Facts with Conditions
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Install on RedHat
+      apt:
+        name: apache2
+        state: absent
+      when: ansible_facts['os_family'] == "Debian"
+      when: ansible_facts['distribution_major_version'] | int >= 8

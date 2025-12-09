@@ -1,0 +1,9 @@
+- name: Conditional debug example
+  hosts: all
+  vars:
+    age: 20
+  tasks:
+    - name: Print age category
+      ansible.builtin.debug:
+        msg: "You are an adult."
+      when: age >= 18

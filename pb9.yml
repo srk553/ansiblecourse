@@ -1,0 +1,13 @@
+- name: Handler example
+  hosts: all
+  tasks:
+    - name: Trigger a handler
+      ansible.builtin.debug:
+        msg: "Task executed"
+      changed_when: true
+      notify: show_message
+
+  handlers:
+    - name: show_message
+      ansible.builtin.debug:
+        msg: "Handler triggered!"

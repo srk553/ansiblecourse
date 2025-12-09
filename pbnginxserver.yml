@@ -1,0 +1,38 @@
+---
+- name: Install and configure NGINX load balancer
+  hosts: lb
+  become: yes
+
+  vars:
+    backend_servers: "{{ groups['srv'] }}"
+
+  tasks:
+
+    - name: Install NGINX
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: Create NGINX load balancer config
+      ansible.builtin.template:
+        src: nginx-lb.conf.j2
+        dest: /etc/nginx/conf.d/loadbalancer.conf
+        mode: "0644"
+
+    - name: Remove default NGINX config
+      ansible.builtin.file:
+        path: /etc/nginx/conf.d/default.conf
+        state: absent
+
+    - name: Test NGINX configuration
+      ansible.builtin.command: nginx -t
+      register: nginx_test
+      changed_when: false
+
+    - name: Restart NGINX
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+        enabled: yes
+
+

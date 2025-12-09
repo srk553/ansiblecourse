@@ -1,0 +1,8 @@
+- name: Show variable value
+  hosts: all
+  vars:
+    student_name: "Sharath"
+  tasks:
+    - name: Print variable
+      ansible.builtin.debug:
+        msg: "Student name is {{ student_name }}"

@@ -1,0 +1,6 @@
+- name: Show system facts
+  hosts: all
+  tasks:
+    - name: Print OS type
+      ansible.builtin.debug:
+        var: ansible_facts['os_family']

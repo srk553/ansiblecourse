@@ -1,0 +1,20 @@
+---
+- name: Deploy custom IIS index page
+  hosts: windows
+  gather_facts: no
+
+  tasks:
+    - name: Ensure IIS is installed
+      win_feature:
+        name: Web-Server
+        state: present
+
+    - name: Copy custom index.html to IIS
+      win_copy:
+        src: index.html
+        dest: 'C:\inetpub\wwwroot\index.html'
+
+    - name: Restart IIS
+      win_service:
+        name: W3SVC
+        state: restarted

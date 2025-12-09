@@ -8,6 +8,18 @@
 [lb]
 172.22.95.124
 
+[windows]
+win2022 ansible_host=172.22.95.131
+
+[windows:vars]
+ansible_user=Administrator
+ansible_password=admin@123
+ansible_connection=winrm
+ansible_winrm_transport=basic
+ansible_winrm_server_cert_validation=ignore
+ansible_port=5985
+
+
 [ntw]
 172.22.95.95
 172.22.95.98
